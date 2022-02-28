@@ -1,0 +1,387 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Mono:wght@400&family=Roboto:wght@400&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&family=Roboto+Mono&display=swap");
+
+:root {
+  --textLight: rgb(82, 82, 82);
+  --textDark: white;
+  --bgLight: white;
+  --bgDark: rgb(97, 96, 96);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* font-family: 'Roboto', sans-serif; */
+  background-color: #f5f5f5;
+  /* background-color: rgb(203, 253, 235); */
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  /* background-color: var(--bgDark); */
+  opacity: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: rgba(64, 78, 139, 0.5);
+  text-decoration: none;
+  /* font-family: Roboto Mono; */
+}
+
+a:hover {
+  color: rgba(64, 78, 139, 0.8);
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  padding: 20px;
+}
+
+.logo {
+  /* font-family: 'Roboto Mono'; */
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: rgba(64, 78, 139, 0.2);
+}
+
+.net-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+}
+
+#currency {
+  background-color: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: rgba(64, 78, 139, 0.5);
+}
+
+#currency:focus {
+  border: none;
+  font-size: 1.1rem;
+  color: rgba(64, 78, 139, 0.5);
+}
+
+.coin-input {
+  width: 100%;
+  max-width: 700px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  border-bottom: 1px solid #e7e5e7;
+}
+
+input::placeholder {
+  color: rgb(185, 185, 185);
+}
+
+/* coin code inputs */
+.input-container {
+  font-size: 1rem;
+  position: relative;
+  margin: 10px 20px 10px 10px;
+}
+
+.input-container input {
+  appearance: none;
+  background: transparent;
+  padding: 12px;
+  margin-left: 25px;
+  width: 100%;
+  border: none;
+  height: 30px;
+  font-size: 1em;
+}
+
+#coin-code-input:focus {
+  outline: none;
+}
+
+#input-image {
+  position: absolute;
+  top: 6px;
+  left: 0px;
+  color: rgb(170, 169, 169);
+  padding-left: 5px;
+  font-size: 1rem;
+}
+
+/* coin holdings inputs */
+.holdings-input-container {
+  font-size: 1rem;
+  position: relative;
+  margin: 10px 20px 10px 10px;
+}
+
+.holdings-input-container input {
+  appearance: none;
+  background: transparent;
+  padding: 12px;
+  margin-left: 25px;
+  width: 100%;
+  height: 30px;
+  font-size: 1rem;
+  border: none;
+}
+
+#quantity-image {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  color: rgb(163, 162, 162);
+  padding-left: 5px;
+  font-size: 1rem;
+}
+
+#holdings-input:focus {
+  outline: none;
+}
+
+/* Progress bar and quote - inactive */
+#myProgress {
+  width: 700px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 2px;
+  margin-bottom: 90px;
+}
+
+#myBar {
+  position: relative;
+  width: 0%;
+  height: 5px;
+  background-color: #04aa6d;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  border-radius: 2px;
+}
+
+#bar-progress-label {
+  color: rgb(114, 113, 113);
+  position: absolute;
+  top: 10px;
+  left: 95%;
+}
+
+#progress-quote {
+  font-style: italic;
+  font-size: 0.9em;
+  margin: 5px;
+}
+
+.fab {
+  color: rgb(64, 163, 221);
+}
+
+#progress-quote-author {
+  font-size: 0.9em;
+  font-style: normal;
+}
+
+/* table styling */
+.styled-table {
+  max-width: 700px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 1em;
+}
+
+.styled-table thead {
+  border-bottom: 1px solid #e6e3e3;
+  border-bottom: 2px solid rgba(64, 78, 139, 0.1);
+}
+
+.styled-table thead tr {
+  color: rgba(64, 78, 139, 0.5);
+  height: 12px;
+  font-weight: 600;
+  font-size: 0.8em;
+}
+
+.visible {
+  opacity: 1;
+  transition: all 1s;
+}
+
+.styled-table th {
+  padding: 8px 0;
+  height: 10px;
+  font-weight: lighter;
+}
+
+.styled-table td {
+  padding: 15px 0;
+  height: 25px;
+  color: rgba(64, 78, 139, 0.9);
+}
+
+.styled-table tbody tr {
+  border-bottom: 2px solid rgba(64, 78, 139, 0.1);
+}
+
+.styled-table .left-justify {
+  text-align: left;
+  padding-left: 5px;
+  vertical-align: middle;
+}
+
+.styled-table .right-justify {
+  text-align: right;
+  padding-right: 5px;
+  vertical-align: center;
+}
+
+.styled-table .center {
+  text-align: center;
+}
+
+.styled-table .first-column {
+  padding-left: 10px;
+  width: 50px;
+}
+
+.styled-table .last-column {
+  padding: 10px;
+  width: 50px;
+}
+
+.styled-table #change-text {
+  font-size: 1rem;
+}
+
+/* total dollar value */
+h1 {
+  font-family: "Poppins", sans-serif;
+  color: rgb(57, 73, 141);
+  text-align: center;
+  opacity: 0.5;
+  font-size: 6rem;
+  font-weight: 600;
+  padding: 80px 5px 45px 40px;
+}
+
+.btn {
+  color: white;
+  border-radius: 50%;
+  height: 22px;
+  width: 22px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-btn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(197, 197, 197);
+  font-size: 0.7rem;
+  margin-right: 30px;
+}
+
+#delete-selection-btn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(209, 209, 209);
+  color: rgba(179, 131, 226, 0.5);
+  color: rgba(64, 78, 139, 0.5);
+  font-size: 0.6rem;
+}
+
+.coin-img {
+  width: 35px;
+  height: 30px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.coin-input-error-container {
+  color: rgb(255, 54, 54);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+
+.coin-input-error {
+  padding-left: 45px;
+  opacity: 0;
+}
+
+.coin-quantity-error {
+  padding-right: 20%;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  .input-container input {
+    font-size: 0.8em;
+  }
+
+  .holdings-input-container input {
+    font-size: 0.8rem;
+  }
+
+  #input-image {
+    padding-left: 15px;
+  }
+
+  .styled-table {
+    font-size: 0.8em;
+    padding: 0px;
+  }
+
+  .styled-table #change-text {
+    font-size: 0.8rem;
+  }
+
+  .coin-input-error {
+    font-size: 0.8rem;
+  }
+
+  .coin-quantity-error {
+    font-size: 0.8rem;
+  }
+}
