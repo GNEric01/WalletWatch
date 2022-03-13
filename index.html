@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Wallet Watch</title>
+</head>
+<body>
+  
+    <div class="container">
+      <div class="header">
+        <h1 id="networth-text"></h1>
+        <button class="btn-round" id="open-modal-btn">+</button>
+
+      </div>
+
+      <div class="coin-item-container">
+        <ul class="coin-item-list">
+         <!-- <li>
+            <div class="coin-item">
+              <div class="coin-info-container">
+                <img src="btc-logo.png" alt="" class="logo">
+                <div class="coin-text-container">
+                  <p class="name">Bitcorn
+                  </p>
+                  <p class="code">BTC</p>
+                </div>
+              </div>
+               
+              <div class="price-container">
+                <p class="price">$43,000.00</p>
+                <p class="change">3.4%</p>
+              </div>
+               
+              <div class="holdings-container">
+                <p class="holdings-total">$86,000,000</p>
+                <p class="holdings">2 BTC</p>
+              </div>
+            </div>
+          </li> -->
+          
+        </ul>
+      </div>
+    </div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header-content">
+      <p id="modal-heading">Add Coin to Holdings</p>
+      <button class="btn-round" id="clsBtn" >x</button>
+    </div>
+    <div class="modal-body-content">
+      <div class="coin-code-input-container">
+        <input id="coin-code-input" type="text" list="coins" placeholder=" coin code" autocomplete="off"  >
+        <!-- <select name="" id="coin-code-input" placeholder=" coin code"  >
+          <option value="" disabled selected hidden> coin code</option>
+        </select> -->
+        <datalist id="coins"></datalist>
+        <label class="no-error" id="coin-code-input-container-label" for="">Filter/Select Coin Code from dropdown</label>
+      </div>
+      
+      <div class="coin-holdings-input-container">
+        <input id="coin-holdings-input" type="number" placeholder=" coin holdings" autocomplete="off">
+        <label id="coin-holdings-input-container-label" for="">Zero or empty for watch item only</label>
+      </div>
+      
+    </div>
+    <button id="addCoinBtn">Add Coin</button>
+    <!-- <span class="close">&times;</span> -->
+  </div>
+</div>
+
+</div>
+  <script src="fetchData.js"></script>
+  <script type='module' src="LocalStorageManager.js"></script>
+    <script type='module' src="MathsHelpers.js"></script>
+    
+  <script type="module" src="script.js"></script>
+     
+</body>
+</html>

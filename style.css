@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&family=Mulish:wght@400&family=Roboto+Condensed&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=PT+Sans&display=swap');
+
+:root {
+  --text-main: rgb(95, 95, 95);
+  --text-dark:#fff;
+  --text-light:rgb(165, 164, 164);
+  --card-bg: rgb(255, 255, 255);
+  --bg:rgb(247,240,246);
+  --coin-item-bg: rgb(255, 255, 255);
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: var(--bg);
+  
+}
+
+.container {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+  width: 95%;
+  border-radius: 20px;
+  padding: 20px 0px 5px 0px;
+  margin: 5px;
+  margin-top: 80px;
+}
+
+.coin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--text-main);
+  margin-left: 10px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-round {
+  color: var(--text-main);
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn-round:hover {
+  background-color: #e6e4e4;
+}
+
+#open-modal-btn {
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-left: -60px;
+}
+
+.coin-item {
+  background-color: rgb(247, 247, 247);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 70px;
+  padding: 10px;
+  margin: 5px 10px;
+  border-radius: 15px;
+}
+
+.coin-item:hover {
+  border: 2px solid rgb(250, 233, 247);
+}
+
+.coin-info-container {
+  display: flex;
+  width: 180px;
+  align-items: center;
+}
+
+img {
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+}
+
+.coin-text-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.code {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 25%;
+  align-items:flex-end;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.change {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgb(31, 197, 44);
+}
+
+.holdings-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  align-items:flex-end;
+  justify-content: center;
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+.holdings-total {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.holdings {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+ 
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 80px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+  
+  /* align-items: center; */
+  justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  width: 95%;
+  border-radius: 18px;
+  height: 300px;
+}
+
+.modal-header-content {
+  display: flex;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#modal-heading {
+  margin: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+#clsBtn {
+  padding-bottom: 2px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+#clsBtn:hover,
+#clsBtn:focus {
+  background-color: #e6e4e4;
+  /* color: #000;
+  text-decoration: none;
+  cursor: pointer; */
+}
+
+.modal-body-content {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100px;
+  background-color: rgb(247, 247, 247);
+  border-radius: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+.modal-body-content:hover {
+  border: 2px solid rgb(250, 233, 247);
+}
+
+li {
+  list-style-type: none;
+}
+
+#coin-code-input {
+  background-color: transparent;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  width: 95%;
+  height: 45px;
+  border: none;
+  border-bottom: 2px solid rgb(233, 233, 233);
+}
+
+input {
+  background-color: transparent;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  width: 95%;
+  height: 45px;
+  border: none;
+  border-bottom: 2px solid rgb(233, 233, 233);
+}
+
+.coin-code-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  border-radius: 20px;
+}
+
+#coin-code-input {
+  background-color: transparent;
+  appearance: listbox;
+}
+
+#coin-code-input-container-label {
+  /* color: #aaaaaa; */
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+#coin-code-input:focus {
+  outline:none;
+}
+
+.error {
+  color: #ee4242;
+}
+
+.no-error {
+  color: #aaaaaa;
+}
+
+.coin-holdings-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#coin-holdings-input-container-label {
+  color: #aaaaaa;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+#coin-holdings-input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+
+#coin-holdings-input:focus {
+  outline:none;
+}
+
+#addCoinBtn {
+  display: flex;
+  color: rgb(252, 81, 195);
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: rgb(253, 227, 250);
+  height: 45px;
+  width: 96%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+#addCoinBtn:hover {
+  background-color: rgb(250, 209, 244);
+}
+
+@media only screen and (max-width: 600px) {
+  input {
+    width:90%;
+  }
+
+  #coin-code-input-container-label {
+    font-size: 0.6rem;
+  }
+  
+  #coin-holdings-input-container-label {
+    font-size: 0.6rem;
+    }
+}
+
+
+
+
