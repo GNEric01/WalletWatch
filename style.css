@@ -5,7 +5,7 @@
 :root {
   --text-main: rgb(95, 95, 95);
   --text-dark:#fff;
-  --text-light:rgb(165, 164, 164);
+  --text-light:rgb(134, 133, 133);
   --card-bg: rgb(255, 255, 255);
   --bg:rgb(247,240,246);
   --coin-item-bg: rgb(255, 255, 255);
@@ -61,6 +61,7 @@ h1 {
 }
 
 .btn-round {
+  background-color: #e4e3e3;
   color: var(--text-main);
   height: 30px;
   width: 30px;
@@ -71,7 +72,7 @@ h1 {
 }
 
 .btn-round:hover {
-  background-color: #e6e4e4;
+  background-color: #dad9d9;
 }
 
 #open-modal-btn {
