@@ -21,13 +21,24 @@ const coinItemContainer = document.querySelector(".coin-item-container");
 let netWorth = document.querySelector("#networth-text");
 // coin code dropdown options list
 let inputOptions = document.getElementById("coins");
+// coin dropdown
+let coinDropdown = document.querySelector(".coin-dropdown-list");
+let coinDropdownUL = document.querySelector('#coin-dropdown-ul');
 
 let codeInputErrorLabel = document.querySelector("#coin-code-input-container-label");  
 
 // event listener for filter of coin code/name input
 coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
 
-// event listener for add new table row
+// event listener for input clicked to open dropdown
+coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
+
+// event listener for holdings input clicked to close dropdown
+coinHoldingsInput.addEventListener("click", (e) => {
+  coinDropdown.style.display = "none";
+});
+
+// event listener for add new coin list item
 addCoinItemBtn.addEventListener("click", function (e) {
   createNewWatchListItem(coinCodeInput.value, coinHoldingsInput.value);
 });
@@ -306,6 +317,7 @@ function createNewWatchListItem(coinName, coinQuantity) {
 }
 
 function filterData(searchInput) {
+  coinDropdown.style.display = 'block';
   let arr = CoinCodes.coinCodes;
   // return array of filtered coins containing search input value
   const filteredData = arr.filter((value) => {
@@ -315,15 +327,23 @@ function filterData(searchInput) {
 
     return matches;
   });
-  // set update options to filtered coins
-  inputOptions.innerHTML = "";
+  
+  coinDropdownUL.innerHTML = "";
   for (let index = 0; index < filteredData.length; index++) {
-    inputOptions.innerHTML += `<option value="${filteredData[index].name}">`;
+    const li = document.createElement('li');
+    li.innerText = `${filteredData[index].name}`;
+    li.addEventListener('click', () => {
+      coinCodeInput.value = filteredData[index].name;
+      coinDropdown.style.display = "none";
+    });
+    coinDropdownUL.appendChild(li);
+    
   }
 }
 
 // clear input fields and reset input dropdown after coin has been added to local storage
 function resetInput() {
+  coinDropdown.style.display = "none";
   // clear input fields
   coinCodeInput.value = "";
   coinHoldingsInput.value = "";

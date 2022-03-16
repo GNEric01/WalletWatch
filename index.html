@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Wallet Watch</title>
-</head>
-<body>
-  
+  </head>
+  <body>
     <div class="container">
       <div class="header">
         <h1 id="networth-text"></h1>
@@ -17,46 +19,62 @@
       </div>
 
       <div class="coin-item-container">
-        <ul class="coin-item-list">
-        </ul>
+        <ul class="coin-item-list"></ul>
       </div>
     </div>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header-content">
-      <p id="modal-heading">Add Coin</p>
-      <button class="btn-round" id="clsBtn" >x</button>
-    </div>
-    <div class="modal-body-content">
-      <div class="coin-code-input-container">
-        <input id="coin-code-input" type="text" list="coins" placeholder=" coin code" autocomplete="off"  >
-        <!-- <select name="" id="coin-code-input" placeholder=" coin code"  >
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header-content">
+          <p id="modal-heading">Add Coin</p>
+          <button class="btn-round" id="clsBtn">x</button>
+        </div>
+        <div class="modal-body-content">
+          <div class="coin-code-input-container">
+            <input
+              id="coin-code-input"
+              type="text"
+              list="coins"
+              placeholder=" coin code"
+              autocomplete="off"
+            />
+            <!-- <select name="" id="coin-code-input" placeholder=" coin code"  >
           <option value="" disabled selected hidden> coin code</option>
         </select> -->
-        <datalist id="coins"></datalist>
-        <label class="no-error" id="coin-code-input-container-label" for="">Filter/Select Coin Code from dropdown</label>
+            <datalist id="coins"></datalist>
+
+            <div class="coin-dropdown-list">
+              <ul id="coin-dropdown-ul">
+        
+              </ul>
+            </div>
+            <label class="no-error" id="coin-code-input-container-label" for=""
+              >Filter/Select Coin Code from dropdown</label
+            >
+          </div>
+
+          <div class="coin-holdings-input-container">
+            <input
+              id="coin-holdings-input"
+              type="number"
+              placeholder=" coin holdings"
+              autocomplete="off"
+            />
+            <label id="coin-holdings-input-container-label" for=""
+              >Zero or empty for watch item only</label
+            >
+          </div>
+        </div>
+        <button id="addCoinBtn">Add Coin</button>
+        <!-- <span class="close">&times;</span> -->
       </div>
-      
-      <div class="coin-holdings-input-container">
-        <input id="coin-holdings-input" type="number" placeholder=" coin holdings" autocomplete="off">
-        <label id="coin-holdings-input-container-label" for="">Zero or empty for watch item only</label>
-      </div>
-      
     </div>
-    <button id="addCoinBtn">Add Coin</button>
-    <!-- <span class="close">&times;</span> -->
-  </div>
-</div>
 
-
-  <script src="fetchData.js"></script>
-  <script type='module' src="LocalStorageManager.js"></script>
-  <script type='module' src="MathsHelpers.js"></script>
-  <script type="module" src="script.js"></script>
-     
-</body>
+    <script src="fetchData.js"></script>
+    <script type="module" src="LocalStorageManager.js"></script>
+    <script type="module" src="MathsHelpers.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
