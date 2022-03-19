@@ -1,3 +1,7 @@
+// TO DO -- implement currency
+// TO DO -- manage duplicate items
+// TO DO -- optimize/remove xs code
+
 import * as LocalStorageManager from "/LocalStorageManager.js";
 import * as MathsHelpers from "/MathsHelpers.js";
 // import * as ProgressItems from "/progressData.js";
@@ -15,8 +19,8 @@ let clsBtn = document.getElementById("clsBtn");
 // add new coin item btn
 const addCoinItemBtn = document.querySelector("#addCoinBtn");
 // coin item container,new coin items added to this
-const coinItemContainer = document.querySelector(".coin-item-container");
-// const coinItemList = document.querySelector();
+ const coinItemContainer = document.querySelector(".coin-item-container"); 
+ const coinItemList = document.querySelector('.coin-item-list');
 // net worth total
 let netWorth = document.querySelector("#networth-text");
 // coin code dropdown options list
@@ -25,7 +29,10 @@ let inputOptions = document.getElementById("coins");
 let coinDropdown = document.querySelector(".coin-dropdown-list");
 let coinDropdownUL = document.querySelector('#coin-dropdown-ul');
 
-let codeInputErrorLabel = document.querySelector("#coin-code-input-container-label");  
+let codeInputErrorLabel = document.querySelector("#coin-code-input-container-label");
+
+ coinItemList.addEventListener("touchstart", startTouch, false);
+ coinItemList.addEventListener("touchmove", moveTouch, false);
 
 // event listener for filter of coin code/name input
 coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
@@ -174,7 +181,7 @@ function writeToTable() {
     let num = MathsHelpers.numberWithCommas(formattedCoin.coinCurrentValue);
     formattedCoin.coinCurrentValue = "$" + num;
 
-    displayNewCoinItem(formattedCoin);
+    displayNewCoinItem(formattedCoin,index);
 
     // after items drawn to list, attach listeners and delete functionality
     setUpCoinItemDelete();
@@ -238,7 +245,7 @@ function resetNetworth() {
   netWorth.textContent = "$0.00";
 }
 
-function displayNewCoinItem(formattedCoin) {
+function displayNewCoinItem(formattedCoin,id) {
   // set color of daily change
   let change = parseFloat(formattedCoin.coinDailyChange);
   let changeColor = "";
@@ -248,9 +255,13 @@ function displayNewCoinItem(formattedCoin) {
     changeColor = "#04AA1D";
   }
 
+  var li = document.createElement("li");
+  
+  
+
   let newCoinItem = `
-  <li>
-      <div class="coin-item">
+  <!-- <li class='coin-list-item'> -->
+      <div class="coin-item" data-id="${parseInt(id + 1)}">
       <!-- coin img name code -->
       <div class="coin-info-container">
         <img src="${formattedCoin.coinImg}?width=100" alt="" class="logo">
@@ -271,9 +282,11 @@ function displayNewCoinItem(formattedCoin) {
         <p class="holdings">${formattedCoin.coinHoldings} ${formattedCoin.coinCode}</p>
       </div>
     </div>
-    </li>
+    <!-- <li/> -->
   `;
-  coinItemContainer.innerHTML += newCoinItem;
+  li.classList.add('coin-list-item');
+  li.innerHTML = newCoinItem;
+  coinItemList.appendChild(li);
 }
 
 function createNewWatchListItem(coinName, coinQuantity) {
@@ -361,5 +374,64 @@ function resetInputErrorLabel() {
 
 // remove all coin items to allow updated local storage array to be shown
 function clearCoinItems() {
-  coinItemContainer.innerHTML = "";
+  coinItemList.innerHTML = "";
 }
+
+var initialX = null;
+var initialY = null;
+
+function startTouch(e) {
+  initialX = e.touches[0].clientX;
+  initialY = e.touches[0].clientY;
+  // console.log(touched - e.CoinCodes);
+};
+
+function moveTouch(e) {
+  if (initialX === null) {
+    return;
+  }
+
+  if (initialY === null) {
+    return;
+  }
+
+  var currentX = e.touches[0].clientX;
+  var currentY = e.touches[0].clientY;
+
+  var diffX = initialX - currentX;
+  var diffY = initialY - currentY;
+
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // sliding horizontally
+    if (diffX > 0) {
+      // swiped left
+      console.log("swiped left");
+      // 
+      let swipedLiData = e.target.closest('.coin-item');
+      let itemId = swipedLiData.getAttribute('data-id');
+      console.log(parseInt(itemId));
+
+      LocalStorageManager.removeItemFromLocalStorage("watchList", parseInt(itemId));
+      createWatchListItemsFromLocalStorage();
+      return;
+
+    } else {
+      // swiped right
+      console.log("swiped right");
+    }  
+  } else {
+    // sliding vertically
+    if (diffY > 0) {
+      // swiped up
+      console.log("swiped up");
+    } else {
+      // swiped down
+      console.log("swiped down");
+    }  
+  }
+
+  initialX = null;
+  initialY = null;
+
+  e.preventDefault();
+};

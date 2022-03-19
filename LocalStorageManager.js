@@ -40,6 +40,4 @@ export function removeItemFromLocalStorage(localStorageName, itemToRemoveById) {
     saveToLocalStorage(localStorageName, filteredItems);
 }
 
-export function test() {
-    console.log("from text fx");
-}
+ 
