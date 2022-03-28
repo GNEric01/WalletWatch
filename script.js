@@ -4,7 +4,7 @@
 
 import * as LocalStorageManager from "/LocalStorageManager.js";
 import * as MathsHelpers from "/MathsHelpers.js";
-// import * as ProgressItems from "/progressData.js";
+import * as DragHelper from "/DragHelper.js";
 import * as CoinCodes from "/coinCodes2.js";
 
 const coinCodeInput = document.querySelector("#coin-code-input");
@@ -19,20 +19,26 @@ let clsBtn = document.getElementById("clsBtn");
 // add new coin item btn
 const addCoinItemBtn = document.querySelector("#addCoinBtn");
 // coin item container,new coin items added to this
- const coinItemContainer = document.querySelector(".coin-item-container"); 
- const coinItemList = document.querySelector('.coin-item-list');
+const coinItemContainer = document.querySelector(".coin-item-container");
+const coinItemList = document.querySelector(".coin-item-list");
 // net worth total
 let netWorth = document.querySelector("#networth-text");
 // coin code dropdown options list
 let inputOptions = document.getElementById("coins");
 // coin dropdown
 let coinDropdown = document.querySelector(".coin-dropdown-list");
-let coinDropdownUL = document.querySelector('#coin-dropdown-ul');
+let coinDropdownUL = document.querySelector("#coin-dropdown-ul");
 
-let codeInputErrorLabel = document.querySelector("#coin-code-input-container-label");
+let codeInputErrorLabel = document.querySelector(
+  "#coin-code-input-container-label"
+);
 
- coinItemList.addEventListener("touchstart", startTouch, false);
- coinItemList.addEventListener("touchmove", moveTouch, false);
+// coinItemList.addEventListener("touchstart", startTouch, false);
+//  coinItemList.addEventListener("touchmove", moveTouch, false);
+
+coinItemList.addEventListener("touchstart", dragStart, false);
+coinItemList.addEventListener("touchend", dragEnd, false);
+coinItemList.addEventListener("touchmove", drag, false);
 
 // event listener for filter of coin code/name input
 coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
@@ -181,7 +187,7 @@ function writeToTable() {
     let num = MathsHelpers.numberWithCommas(formattedCoin.coinCurrentValue);
     formattedCoin.coinCurrentValue = "$" + num;
 
-    displayNewCoinItem(formattedCoin,index);
+    displayNewCoinItem(formattedCoin, index);
 
     // after items drawn to list, attach listeners and delete functionality
     setUpCoinItemDelete();
@@ -245,19 +251,17 @@ function resetNetworth() {
   netWorth.textContent = "$0.00";
 }
 
-function displayNewCoinItem(formattedCoin,id) {
+function displayNewCoinItem(formattedCoin, id) {
   // set color of daily change
   let change = parseFloat(formattedCoin.coinDailyChange);
   let changeColor = "";
   if (change < 0) {
-    changeColor = "rgba(219, 40, 40, 0.9)";
+    changeColor = "rgb(255, 123, 123";
   } else if (change > 0) {
     changeColor = "#04AA1D";
   }
 
   var li = document.createElement("li");
-  
-  
 
   let newCoinItem = `
   <!-- <li class='coin-list-item'> -->
@@ -279,13 +283,17 @@ function displayNewCoinItem(formattedCoin,id) {
       <!-- holdings total holdings -->
       <div class="holdings-container">
         <p class="holdings-total">${formattedCoin.coinCurrentValue}</p>
-        <p class="holdings">${formattedCoin.coinHoldings} ${formattedCoin.coinCode}</p>
+        <p class="holdings">${formattedCoin.coinHoldings} ${
+    formattedCoin.coinCode
+  }</p>
       </div>
     </div>
     <!-- <li/> -->
   `;
-  li.classList.add('coin-list-item');
+  li.classList.add("coin-list-item");
   li.innerHTML = newCoinItem;
+  // li.draggable = "true";
+
   coinItemList.appendChild(li);
 }
 
@@ -293,7 +301,7 @@ function createNewWatchListItem(coinName, coinQuantity) {
   if (coinQuantity == "") {
     coinQuantity = 0;
   }
-  
+
   // TO DO - implement currency func
   // let currentCurrency = getCurrentCurrency();
   // get current coin details from API
@@ -330,7 +338,7 @@ function createNewWatchListItem(coinName, coinQuantity) {
 }
 
 function filterData(searchInput) {
-  coinDropdown.style.display = 'block';
+  coinDropdown.style.display = "block";
   let arr = CoinCodes.coinCodes;
   // return array of filtered coins containing search input value
   const filteredData = arr.filter((value) => {
@@ -340,17 +348,16 @@ function filterData(searchInput) {
 
     return matches;
   });
-  
+
   coinDropdownUL.innerHTML = "";
   for (let index = 0; index < filteredData.length; index++) {
-    const li = document.createElement('li');
+    const li = document.createElement("li");
     li.innerText = `${filteredData[index].name}`;
-    li.addEventListener('click', () => {
+    li.addEventListener("click", () => {
       coinCodeInput.value = filteredData[index].name;
       coinDropdown.style.display = "none";
     });
     coinDropdownUL.appendChild(li);
-    
   }
 }
 
@@ -377,61 +384,161 @@ function clearCoinItems() {
   coinItemList.innerHTML = "";
 }
 
-var initialX = null;
-var initialY = null;
+// swipe data
 
-function startTouch(e) {
-  initialX = e.touches[0].clientX;
-  initialY = e.touches[0].clientY;
-  // console.log(touched - e.CoinCodes);
-};
+// var initialX = null;
+// var initialY = null;
 
-function moveTouch(e) {
-  if (initialX === null) {
-    return;
-  }
+// function startTouch(e) {
+//   // initialX = e.touches[0].clientX;
+//   // initialY = e.touches[0].clientY;
+//   // console.log(touched - e.CoinCodes);
 
-  if (initialY === null) {
-    return;
-  }
+//   let swipedLiData = e.target.closest('.coin-item');
+//   DragHelper.applyDrag(swipedLiData);
+// };
 
-  var currentX = e.touches[0].clientX;
-  var currentY = e.touches[0].clientY;
+// function moveTouch(e) {
+// if (initialX === null) {
+//   return;
+// }
 
-  var diffX = initialX - currentX;
-  var diffY = initialY - currentY;
+// if (initialY === null) {
+//   return;
+// }
 
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-    // sliding horizontally
-    if (diffX > 0) {
-      // swiped left
-      console.log("swiped left");
-      // 
-      let swipedLiData = e.target.closest('.coin-item');
-      let itemId = swipedLiData.getAttribute('data-id');
-      console.log(parseInt(itemId));
+// var currentX = e.touches[0].clientX;
+// var currentY = e.touches[0].clientY;
 
-      LocalStorageManager.removeItemFromLocalStorage("watchList", parseInt(itemId));
-      createWatchListItemsFromLocalStorage();
-      return;
+// var diffX = initialX - currentX;
+// var diffY = initialY - currentY;
 
+// if (Math.abs(diffX) > Math.abs(diffY)) {
+//   // sliding horizontally
+//   if (diffX > 0) {
+//     // swiped left
+//     console.log("swiped left");
+//     //
+//     let swipedLiData = e.target.closest('.coin-item');
+//     let itemId = swipedLiData.getAttribute('data-id');
+//     console.log(parseInt(itemId));
+
+//     setTimeout(() => {
+//       LocalStorageManager.removeItemFromLocalStorage("watchList", parseInt(itemId));
+//       createWatchListItemsFromLocalStorage();
+//     },200);
+
+//     // LocalStorageManager.removeItemFromLocalStorage("watchList", parseInt(itemId));
+//     // createWatchListItemsFromLocalStorage();
+//     // return;
+
+//   } else {
+//     // swiped right
+//     console.log("swiped right");
+//   }
+// } else {
+//   // sliding vertically
+//   if (diffY > 0) {
+//     // swiped up
+//     console.log("swiped up");
+//   } else {
+//     // swiped down
+//     console.log("swiped down");
+//   }
+// }
+
+// initialX = null;
+// initialY = null;
+
+// e.preventDefault();
+//};
+
+var swipeItems = document.querySelector(".swipe-item");
+
+var activeItem = null;
+var initialXPos = 0;
+var active = false;
+export var del = false;
+var swiper;
+
+// swipeItems.addEventListener("mousedown", dragStart, false);
+// swipeItems.addEventListener("mouseup", dragEnd, false);
+// swipeItems.addEventListener("mousemove", drag, false);
+
+function dragStart(e) {
+  active = true;
+  // this is the item we are interacting with
+  activeItem = e.target.closest(".coin-item");
+
+  if (activeItem !== null) {
+    if (!activeItem.xOffset) {
+      activeItem.xOffset = 0;
+    }
+
+    if (e.type === "touchstart") {
+      activeItem.xOffset = 0;
+      activeItem.initialX = e.touches[0].clientX - activeItem.xOffset;
+      initialXPos = activeItem.xOffset;
     } else {
-      // swiped right
-      console.log("swiped right");
-    }  
-  } else {
-    // sliding vertically
-    if (diffY > 0) {
-      // swiped up
-      console.log("swiped up");
-    } else {
-      // swiped down
-      console.log("swiped down");
-    }  
+      activeItem.initialX = e.clientX - activeItem.xOffset;
+    }
   }
+}
 
-  initialX = null;
-  initialY = null;
+function dragEnd(e) {
+  if (active) {
+    if (activeItem !== null) {
+      activeItem.currentX = activeItem.initialX;
+    }
 
-  e.preventDefault();
-};
+    // if swipe < 50px reset to start pos
+    if (initialXPos - activeItem.currentX <= 50) {
+      setTranslate(initialXPos, 0, activeItem);
+
+      initialXPos = 0;
+      active = false;
+      activeItem = null;
+    }
+  }
+}
+
+function drag(e) {
+  if (active) {
+    if (e.type === "touchmove") {
+      e.preventDefault();
+
+      activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
+
+      // if swipe left > 300 action taken
+      if (initialXPos - activeItem.currentX >= 300) {
+        active = false;
+        let itemId = activeItem.getAttribute("data-id");
+        console.log(parseInt(itemId));
+
+        setTimeout(() => {
+          LocalStorageManager.removeItemFromLocalStorage(
+            "watchList",
+            parseInt(itemId)
+          );
+          createWatchListItemsFromLocalStorage();
+        }, 100);
+      }
+
+      // if swipe right return to start pos
+      if (initialXPos - activeItem.currentX < -50) {
+        setTranslate(initialXPos, 0, activeItem);
+        initialXPos = 0;
+        active = false;
+        return;
+      }
+    } else {
+      activeItem.currentX = e.clientX - activeItem.initialX;
+    }
+    activeItem.xOffset = activeItem.currentX;
+    setTranslate(activeItem.currentX, 0, activeItem);
+  }
+}
+
+function setTranslate(xPos, yPos, el) {
+  el.style.transform = "translate3d(" + xPos + "px, " + 0 + "px, 0)";
+}

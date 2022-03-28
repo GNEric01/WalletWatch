@@ -1,47 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&family=Huballi:wght@400&family=Roboto+Condensed&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&family=Huballi:wght@400&family=Roboto+Condensed&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=PT+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=PT+Sans&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=Hubballi&family=PT+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=Hubballi&family=PT+Sans&display=swap");
 
 :root {
-  --text-main: rgb(56, 56, 56);
-  --text-dark:#fff;
-  --text-light:rgb(134, 133, 133);
-  --card-bg: rgb(216, 215, 215);
-  --bg:rgb(247,240,246);
-  --coin-item-bg: rgb(255, 255, 255);
+  --text-main-dark: rgb(255, 255, 255);
+  --text-secondary-dark: rgb(124, 124, 124);
+  --card-bg-dark: rgb(47, 44, 47);
+  --bg-dark: rgb(75, 71, 75);
 }
 
+.dark-mode {
+  --text-main-dark: rgb(44, 44, 44);
+  --text-secondary-dark: rgb(109, 108, 108);
+  --card-bg-dark: rgb(255, 255, 255);
+  --bg-dark: rgb(230, 212, 230);
+}
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.disable-select {
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 body {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: var(--bg);
-  
+  background-color: var(--bg-dark);
 }
 
 .container {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(117, 117, 117); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 600px;
-  width: 95%;
-  border-radius: 20px;
+  width: 100%;
+  /* border-radius: 20px; */
   padding: 20px 0px 5px 0px;
   margin: 5px;
   margin-top: 80px;
+}
+
+.coin-item-container {
+  /* overflow-y: scroll; */
 }
 
 .coin-container {
@@ -51,12 +66,11 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
-  color: var(--text-main);
+  font-size: 3.5rem;
+  color: var(--text-main-dark);
   padding-bottom: 10px;
-  
+  font-weight: lighter;
   margin: auto;
-  
 }
 
 .header {
@@ -70,17 +84,17 @@ h1 {
   align-items: center;
   flex-direction: column;
 
-  font-family: 'Hubballi', sans-serif;
-  
-  background-color: #e4e3e3;
-  color: var(--text-main);
+  font-family: "Hubballi", sans-serif;
+
+  background-color: var(--card-bg-dark);
+  color: var(--text-main-dark);
   height: 30px;
   width: 30px;
   border-radius: 50%;
   border: none;
-  font-size: 2rem;
-    
+  font-size: 1rem;
   cursor: pointer;
+   
 }
 
 .btn-round:hover {
@@ -88,105 +102,108 @@ h1 {
 }
 
 #open-modal-btn {
+  /* color: rgb(31, 197, 44); */
   margin-right: 20px;
-  margin-top: 12px;
+  margin-top: 15px;
   margin-left: -60px;
-  font-size: 2.5rem;
-   
+  font-size: 1.2rem;
 }
 
 .coin-item {
-  background-color: rgb(247, 247, 247);
+  background-color: var(--card-bg-dark);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 70px;
   padding: 10px;
-  margin: 5px 10px;
-  border-radius: 15px;
+  margin: 2px 0px;
+  /* border-radius: 15px; */
 }
 
 .coin-item:hover {
-  border: 2px solid rgb(250, 233, 247);
+  border: 2px solid var(--text-main-dark);
 }
 
 .coin-info-container {
   display: flex;
+  flex: 0.9;
   width: 180px;
   align-items: center;
 }
 
 img {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   margin-left: 5px;
+}
+
+img .white-bg {
+  background-color: #fff;
+  border-radius: 50%;
 }
 
 .coin-text-container {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
-  flex-grow: 1;
+
   justify-content: center;
 }
 
 .name {
   font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-main);
+  font-weight: 400;
+  color: var(--text-main-dark);
 }
 
 .code {
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-light);
+  font-weight: bold;
+  color: var(--text-secondary-dark);
 }
-
 
 .price-container {
   display: flex;
   flex-direction: column;
   min-width: 25%;
-  align-items:flex-end;
+  align-items: flex-end;
   justify-content: center;
-  flex-grow: 1;
 }
 
 .price {
   font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-main);
+  font-weight: 400;
+  color: var(--text-main-dark);
 }
 
 .change {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 400;
   color: rgb(31, 197, 44);
+  color: rgb(255, 123, 123);
 }
 
 .holdings-container {
   display: flex;
   flex-direction: column;
   min-width: 30%;
-  align-items:flex-end;
+  align-items: flex-end;
   justify-content: center;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   margin-right: 5px;
 }
 
 .holdings-total {
   font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-main);
+  font-weight: 400;
+  color: var(--text-main-dark);
 }
 
 .holdings {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text-light);
+  color: var(--text-secondary-dark);
 }
-
- 
 
 /* The Modal (background) */
 .modal {
@@ -199,9 +216,9 @@ img {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
-  
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+
   /* align-items: center; */
   justify-content: center;
 }
@@ -229,7 +246,7 @@ img {
 }
 
 #modal-heading {
-  color: var(--text-main);
+  color: var(--text-main-dark);
   margin: 20px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -273,7 +290,7 @@ li {
 #coin-code-input {
   background-color: transparent;
   font-size: 1.1rem;
-  color: var(--text-main);
+  color: black;
   width: 95%;
   height: 45px;
   border: none;
@@ -283,7 +300,7 @@ li {
 input {
   background-color: transparent;
   font-size: 1.1rem;
-  color: var(--text-main);
+  color: black;
   width: 100%;
   height: 45px;
   border: none;
@@ -311,7 +328,7 @@ input {
 }
 
 #coin-code-input:focus {
-  outline:none;
+  outline: none;
 }
 
 .error {
@@ -338,28 +355,26 @@ input {
 }
 
 .coin-dropdown-list::-webkit-scrollbar {
-  width: 5px;               /* width of the entire scrollbar */
+  width: 5px; /* width of the entire scrollbar */
 }
 
 .coin-dropdown-list::-webkit-scrollbar-track {
-  background:  #ececec;        /* color of the tracking area */
+  background: #ececec; /* color of the tracking area */
 }
 
 .coin-dropdown-list::-webkit-scrollbar-thumb {
-  background-color: rgb(148, 147, 147);    /* color of the scroll thumb */
-  height:20px;
-  
+  background-color: rgb(148, 147, 147); /* color of the scroll thumb */
+  height: 20px;
+
   /* border: 3px solid orange;  creates padding around scroll thumb */
 }
 
-.coin-dropdown-list li  {
-  
+.coin-dropdown-list li {
   padding-left: 5px;
-  }
+}
 
 .coin-dropdown-list li:hover {
-background-color: #ececec;
- 
+  background-color: #ececec;
 }
 
 .coin-holdings-input-container {
@@ -374,14 +389,14 @@ background-color: #ececec;
   margin-top: 5px;
 }
 
-#coin-holdings-input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
-  }
+#coin-holdings-input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 #coin-holdings-input:focus {
-  outline:none;
+  outline: none;
 }
 
 #addCoinBtn {
@@ -406,32 +421,31 @@ background-color: #ececec;
 
 @media only screen and (max-width: 600px) {
   input {
-    width:100%;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 3rem;
+     
   }
 
   #coin-code-input-container-label {
     font-size: 0.8rem;
   }
 
-  
-  
   #coin-holdings-input-container-label {
     font-size: 0.8rem;
-    }
+  }
 
-    .modal-content {
-      
-       
-      height: 400px;
-    }
+  .modal-content {
+    height: 400px;
+  }
 
   .modal-body-content {
-     
     flex-direction: column;
     justify-content: space-evenly;
-     
+
     height: 220px;
-     
   }
 
   .coin-dropdown-list {
@@ -453,7 +467,3 @@ background-color: #ececec;
   transform: translateX(50px); /* Equal to translate(10px) */
   background-color: pink;
 }
-
-
-
-
