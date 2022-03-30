@@ -497,12 +497,15 @@ function dragEnd(e) {
 
     // if swipe < 50px reset to start pos
     if (initialXPos - activeItem.currentX <= 50) {
+      activeItem.classList.add('dragged');
       setTranslate(initialXPos, 0, activeItem);
 
       initialXPos = 0;
       active = false;
+      //activeItem.classList.add('not-dragged');
       activeItem = null;
     }
+    activeItem.classList.add('not-dragged');
   }
 }
 

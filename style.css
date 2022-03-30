@@ -114,7 +114,15 @@ h1 {
   padding: 10px;
   margin: 2px 0px;
   /* border-radius: 15px; */
+  
+}
+
+.dragged {
   transition: all ease 0.1s;
+}
+
+.not-dragged {
+  transition: none;
 }
 
 .coin-item:hover {
