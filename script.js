@@ -466,10 +466,10 @@ var swiper;
 // swipeItems.addEventListener("mousemove", drag, false);
 
 function dragStart(e) {
-
-  setTimeout(() => {
-    active = true;
-  },150);
+  active = true;
+  // setTimeout(() => {
+  //   active = true;
+  // },150);
    
   // this is the item we are interacting with
   activeItem = e.target.closest(".coin-item");
