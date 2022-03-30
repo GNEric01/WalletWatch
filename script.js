@@ -473,7 +473,7 @@ function dragStart(e) {
    
   // this is the item we are interacting with
   activeItem = e.target.closest(".coin-item");
-
+  activeItem.classList.remove('dragged');
   if (activeItem !== null) {
     if (!activeItem.xOffset) {
       activeItem.xOffset = 0;
@@ -491,6 +491,7 @@ function dragStart(e) {
 
 function dragEnd(e) {
   if (active) {
+    
     if (activeItem !== null) {
       activeItem.currentX = activeItem.initialX;
     }
@@ -505,7 +506,7 @@ function dragEnd(e) {
       //activeItem.classList.add('not-dragged');
       activeItem = null;
     }
-    activeItem.classList.add('not-dragged');
+    
   }
 }
 
