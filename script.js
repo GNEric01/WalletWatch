@@ -466,7 +466,11 @@ var swiper;
 // swipeItems.addEventListener("mousemove", drag, false);
 
 function dragStart(e) {
-  active = true;
+
+  setTimeout(() => {
+    active = true;
+  },150);
+   
   // this is the item we are interacting with
   activeItem = e.target.closest(".coin-item");
 
@@ -505,7 +509,7 @@ function dragEnd(e) {
 function drag(e) {
   if (active) {
     if (e.type === "touchmove") {
-      e.preventDefault();
+      // e.preventDefault();
 
       activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
 
@@ -525,7 +529,7 @@ function drag(e) {
       }
 
       // if swipe right return to start pos
-      if (initialXPos - activeItem.currentX < -50) {
+      if (initialXPos - activeItem.currentX < 0) {
         setTranslate(initialXPos, 0, activeItem);
         initialXPos = 0;
         active = false;

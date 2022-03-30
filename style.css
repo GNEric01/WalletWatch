@@ -118,6 +118,7 @@ h1 {
   padding: 10px;
   margin: 2px 0px;
   /* border-radius: 15px; */
+  transition: all ease 0.1s;
 }
 
 .coin-item:hover {
@@ -285,6 +286,7 @@ img .white-bg {
 
 li {
   list-style-type: none;
+  overflow: auto;
 }
 
 #coin-code-input {
