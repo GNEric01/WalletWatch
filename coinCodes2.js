@@ -1,20 +1,19 @@
 export let coinCodes = [
-    {"id":"1inch","symbol":"1inch","name":"1inch"},
-    {"id":"ethereum","symbol":"eth","name":"Ethereum"},
-    {"id":"ethereum","symbol":"eth","name":"Eth"},
-    {"id":"bitcoin","symbol":"btc","name":"Bitcoin"},
-    {"id":"bitcoin","symbol":"btc","name":"Btc"},
+    {"id":"1inch","symbol":"1INCH","name":"1inch"},
+    {"id":"ethereum","symbol":"ETH","name":"Ethereum"},
+    {"id":"bitcoin","symbol":"btc","name":"BTC"},
+    
     {"id":"binancecoin","symbol":"bnb","name":"Binance Coin"},
     {"id":"binancecoin","symbol":"bnb","name":"Bnb"},
     {"id":"cardano","symbol":"ada","name":"Cardano"},
-    {"id":"solana","symbol":"sol","name":"Solana"},
-    {"id":"solana","symbol":"sol","name":"Sol"},
+     
+    {"id":"solana","symbol":"sol","name":"SOL"},
     
-    {"id":"dogecoin","symbol":"doge","name":"Dogecoin"},
-    {"id":"dogecoin","symbol":"doge","name":"Doge"},
+     
+    {"id":"dogecoin","symbol":"doge","name":"DOGE"},
     {"id":"terra-luna","symbol":"luna","name":"Terra"},
     {"id":"terra-luna","symbol":"luna","name":"Luna"},
-    {"id":"avalanche-2","symbol":"Avalanche","name":"Avalanche"},
+    {"id":"avalanche-2","symbol":"avax","name":"Avalanche"},
     {"id":"avalanche-2","symbol":"Avalanche","name":"Avax"},
     {"id":"polygon","symbol":"matic","name":"Polygon"},
     {"id":"polygon","symbol":"matic","name":"Matic"},
@@ -22,8 +21,8 @@ export let coinCodes = [
     {"id":"cosmos","symbol":"atom","name":"Cosmos"},
     {"id":"cosmos","symbol":"atom","name":"Atom"},
     {"id":"litecoin","symbol":"ltc","name":"Litecoin"},
-    {"id":"near","symbol":"near","name":"NEAR-Protocol"},
-    {"id":"near","symbol":"near","name":"Near"},
+    {"id":"near","symbol":"NEAR","name":"NEAR-Protocol"},
+    
    
     {"id":"tron","symbol":"trx","name":"Tron"},
     {"id":"bitcoincash","symbol":"bch","name":"Bitcoin-Cash"},

@@ -8,10 +8,10 @@ import * as DragHelper from "/DragHelper.js";
 import * as CoinCodes from "/coinCodes2.js";
 
 const coinCodeInput = document.querySelector("#coin-code-input");
-const coinHoldingsInput = document.querySelector("#coin-holdings-input");
+const coinHoldingsInput = document.querySelector("#holdings-input");
 
 // Get the modal
-const modal = document.getElementById("myModal");
+const modal = document.getElementById("addCoinModal");
 // Get the button that opens the modal
 const openModalBtn = document.querySelector("#open-modal-btn");
 // Get the close button
@@ -33,6 +33,21 @@ let codeInputErrorLabel = document.querySelector(
   "#coin-code-input-container-label"
 );
 
+
+// Get the modal
+const selectCoinModal = document.getElementById("selectCoinModal");
+// Get the button that opens the modal
+const searchOpenBtn = document.querySelector("#open-modal-btn");
+// Get the close button
+let searchClsBtn = document.getElementById("searchClsBtn");
+
+let testHoldingsInput = document.querySelector("#holdings-input");
+
+// button to open select coin panel
+let coinCodeBtn = document.querySelector("#coin-code-button");
+
+let coinSearchList = document.querySelector("#coinSearchList");
+
 // coinItemList.addEventListener("touchstart", startTouch, false);
 //  coinItemList.addEventListener("touchmove", moveTouch, false);
 
@@ -43,12 +58,12 @@ coinItemList.addEventListener("touchmove", drag, false);
 // event listener for filter of coin code/name input
 coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
 
-// event listener for input clicked to open dropdown
-coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
+// // event listener for input clicked to open dropdown
+// coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
 
 // event listener for holdings input clicked to close dropdown
 coinHoldingsInput.addEventListener("click", (e) => {
-  coinDropdown.style.display = "none";
+  
 });
 
 // event listener for add new coin list item
@@ -56,12 +71,38 @@ addCoinItemBtn.addEventListener("click", function (e) {
   createNewWatchListItem(coinCodeInput.value, coinHoldingsInput.value);
 });
 
-// When the user clicks the button, open the modal
+// when user clicks search coin modal open btn
+coinCodeBtn.addEventListener("click", function (e) {
+  selectCoinModal.style.display = "flex";populateSelectTokenList();
+});
+
+// when user clicks search coin modal close btn
+searchClsBtn.addEventListener("click", function (e) {
+  closeSearchModal();
+});
+
+function closeSearchModal() {
+  selectCoinModal.style.display = "none";
+}
+
+// When the user clicks open add coin modal btn
 openModalBtn.onclick = function () {
   modal.style.display = "flex";
+  testHoldingsInput.focus();
+  coinCodeBtn.innerHTML = 
+  `<div id="button-display">
+    
+    <div class="button-display-item">
+      Select token
+    </div>
+    <div class="button-display-item">
+      <i class="fa-solid fa-angle-down"></i>
+    </div>  
+  </div>
+  `
 };
 
-// When the user clicks btn to close the modal
+// When the user clicks close add coin modal btn
 clsBtn.onclick = function () {
   closeModal();
 };
@@ -310,7 +351,7 @@ function createNewWatchListItem(coinName, coinQuantity) {
   let coinId = "";
   let arr = CoinCodes.coinCodes;
   for (let index = 0; index < arr.length; index++) {
-    if (arr[index].name == coinName) {
+    if (arr[index].symbol == coinName) {
       coinId = arr[index].id;
     }
   }
@@ -318,9 +359,9 @@ function createNewWatchListItem(coinName, coinQuantity) {
   // if coin input isnt matched to coin id's
   if (coinId == "") {
     // codeInputErrorLabel.textContent = "Please select coin from dropdown";
-    codeInputErrorLabel.classList.remove("no-error");
-    codeInputErrorLabel.classList.add("error");
-    resetInput();
+    // codeInputErrorLabel.classList.remove("no-error");
+    // codeInputErrorLabel.classList.add("error");
+     resetInput();
     return;
   }
 
@@ -337,8 +378,50 @@ function createNewWatchListItem(coinName, coinQuantity) {
   closeModal();
 }
 
+function populateSelectTokenList() {
+  let arr = CoinCodes.coinCodes;
+
+  coinSearchList.innerHTML = "";
+  // coinDropdownUL.innerHTML = "";
+  for (let index = 0; index < arr.length; index++) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+    <button class="coinSearchButton">
+      <div class="coinSearchItemContainer">
+        <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+        <div class="coinSearchItemTextContainer">
+          <div class="coinSearchItemName">${arr[index].symbol}</div>
+          <div class="coinSearchItemCode">${arr[index].name}</div>
+        </div>
+      </div>
+    </button>
+    `;
+    li.classList.add("coinSearchItem");
+    li.addEventListener("click", () => {
+      coinCodeInput.value = "";
+      coinCodeBtn.innerHTML = 
+      `<div id="button-display">
+        <div class="button-display-item">
+          <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+        </div>
+        <div class="button-display-item">
+          ${arr[index].symbol}
+        </div>
+        <div class="button-display-item">
+          <i class="fa-solid fa-angle-down"></i>
+        </div>  
+      </div>
+      `
+      coinCodeInput.value = arr[index].symbol;
+      closeSearchModal();
+    });
+    // coinDropdownUL.appendChild(li);
+    coinSearchList.appendChild(li);
+}
+}
+
 function filterData(searchInput) {
-  coinDropdown.style.display = "block";
+  
   let arr = CoinCodes.coinCodes;
   // return array of filtered coins containing search input value
   const filteredData = arr.filter((value) => {
@@ -349,21 +432,48 @@ function filterData(searchInput) {
     return matches;
   });
 
-  coinDropdownUL.innerHTML = "";
+  coinSearchList.innerHTML = "";
+  // coinDropdownUL.innerHTML = "";
   for (let index = 0; index < filteredData.length; index++) {
     const li = document.createElement("li");
-    li.innerText = `${filteredData[index].name}`;
+    li.innerHTML = `
+    <button class="coinSearchButton">
+      <div class="coinSearchItemContainer">
+        <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+        <div class="coinSearchItemTextContainer">
+          <div class="coinSearchItemName">${filteredData[index].symbol}</div>
+          <div class="coinSearchItemCode">${filteredData[index].name}</div>
+        </div>
+      </div>
+    </button>
+    `;
+    li.classList.add("coinSearchItem");
     li.addEventListener("click", () => {
-      coinCodeInput.value = filteredData[index].name;
-      coinDropdown.style.display = "none";
+      coinCodeInput.value = "";
+      coinCodeBtn.innerHTML =  `
+      <div id="button-display">
+      <div class="button-display-item">
+        <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+      </div>
+      <div class="button-display-item">
+        ${filteredData[index].symbol}
+      </div>
+      <div class="button-display-item">
+        <i class="fa-solid fa-angle-down"></i>
+      </div>  
+    </div>
+    `
+    coinCodeInput.value = filteredData[index].symbol;
+    closeSearchModal();
     });
-    coinDropdownUL.appendChild(li);
+    // coinDropdownUL.appendChild(li);
+    coinSearchList.appendChild(li);
   }
 }
 
 // clear input fields and reset input dropdown after coin has been added to local storage
 function resetInput() {
-  coinDropdown.style.display = "none";
+  
   // clear input fields
   coinCodeInput.value = "";
   coinHoldingsInput.value = "";
@@ -375,8 +485,8 @@ function resetInput() {
 }
 
 function resetInputErrorLabel() {
-  codeInputErrorLabel.classList.add("no-error");
-  codeInputErrorLabel.classList.remove("error");
+  // codeInputErrorLabel.classList.add("no-error");
+  // codeInputErrorLabel.classList.remove("error");
 }
 
 // remove all coin items to allow updated local storage array to be shown
@@ -467,10 +577,7 @@ var swiper;
 
 function dragStart(e) {
   active = true;
-  // setTimeout(() => {
-  //   active = true;
-  // },150);
-   
+  
   // this is the item we are interacting with
   activeItem = e.target.closest(".coin-item");
   activeItem.classList.remove('dragged');
@@ -506,7 +613,6 @@ function dragEnd(e) {
       //activeItem.classList.add('not-dragged');
       activeItem = null;
     }
-    
   }
 }
 
@@ -532,7 +638,7 @@ function drag(e) {
         }, 100);
       }
 
-      // if swipe right return to start pos
+      // disable swipe right
       if (initialXPos - activeItem.currentX < 0) {
         setTranslate(initialXPos, 0, activeItem);
         initialXPos = 0;

@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable='no'/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      user-scalable="no"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -11,11 +15,14 @@
     <link rel="stylesheet" href="style.css" />
     <title>Wallet Watch</title>
   </head>
-  <body class="disable-select ">
+  <body class="disable-select">
+    <header>WalletWatch.me</header>
     <div class="container">
       <div class="header">
         <h1 id="networth-text"></h1>
-        <button class="btn-round" id="open-modal-btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <button class="btn-round" id="open-modal-btn">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
       </div>
 
       <div class="coin-item-container">
@@ -23,9 +30,9 @@
       </div>
     </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
+    <!-- The Add Coin Modal -->
+    <div id="addCoinModal">
+      <!-- Add Coin Modal content -->
       <div class="modal-content">
         <div class="modal-header-content">
           <p id="modal-heading">Add Coin</p>
@@ -33,26 +40,24 @@
         </div>
         <div class="modal-body-content">
           <div class="coin-code-input-container">
-            <input
+            <!-- <input
               id="coin-code-input"
               type="text"
               list="coins"
               placeholder=" coin code"
               autocomplete="off"
-            />
+            /> -->
             <datalist id="coins"></datalist>
 
-            <div class="coin-dropdown-list">
-              <ul id="coin-dropdown-ul">
-        
-              </ul>
-            </div>
-            <label class="no-error" id="coin-code-input-container-label" for=""
+            <!-- <div class="coin-dropdown-list">
+              <ul id="coin-dropdown-ul"></ul>
+            </div> -->
+            <!-- <label class="no-error" id="coin-code-input-container-label" for=""
               >Filter/Select Coin Code from dropdown</label
-            >
+            > -->
           </div>
 
-          <div class="coin-holdings-input-container">
+          <!-- <div class="coin-holdings-input-container">
             <input
               id="coin-holdings-input"
               type="number"
@@ -62,9 +67,88 @@
             <label id="coin-holdings-input-container-label" for=""
               >Zero or empty for watch item only</label
             >
-          </div>
+          </div> -->
         </div>
+
+        <!-- test  -->
+        <div class="test-container">
+          <button id="coin-code-button">
+            Select a token &nbsp<i class="fa-solid fa-angle-down"></i>
+          </button>
+
+          <input
+            id="holdings-input"
+            type="number"
+            placeholder="0.0"
+            autofocus
+          />
+        </div>
+
         <button id="addCoinBtn">Add Coin</button>
+      </div>
+    </div>
+
+    <!-- Coin Code Modal -->
+    <div id="selectCoinModal">
+      <!-- Add Coin Modal content -->
+      <div id="selectCoinContentPanel" class="modal-content">
+        <div class="modal-header-content">
+          <p id="modal-heading">Select token</p>
+          <button class="btn-round" id="searchClsBtn">x</button>
+        </div>
+        <div class="modal-body-content">
+          <input
+            id="coin-code-input"
+            type="text"
+            list="coins"
+            placeholder=" Search name"
+            autocomplete="off"
+            autofocus
+          />
+
+          <ul id="coinSearchList">
+           
+            <li class="coinSearchItem">
+              <button class="coinSearchButton">
+                <div class="coinSearchItemContainer">
+                  <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+                  <div class="coinSearchItemTextContainer">
+                    <div class="coinSearchItemName">BTC</div>
+                    <div class="coinSearchItemCode">Bitcoin</div>
+                  </div>
+                </div>
+              </button>
+            </li>
+
+            <li class="coinSearchItem">
+              <button class="coinSearchButton">
+                <div class="coinSearchItemContainer">
+                  <img class="coinSearchItemIcon" src="/icons/avax-logo.png" alt="" />
+                  <div class="coinSearchItemTextContainer">
+                    <div class="coinSearchItemName">Avax</div>
+                    <div class="coinSearchItemCode">Avalanche</div>
+                  </div>
+                </div>
+              </button>
+            </li>
+
+            <li class="coinSearchItem">
+              <button class="coinSearchButton">
+                <div class="coinSearchItemContainer">
+                  <img
+                    class="coinSearchItemIcon"
+                    src="/icons/jewel-icon.png"
+                    alt=""
+                  />
+                  <div class="coinSearchItemTextContainer">
+                    <div class="coinSearchItemName">Jewel</div>
+                    <div class="coinSearchItemCode">DefiKingdoms</div>
+                  </div>
+                </div>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
