@@ -187,6 +187,7 @@ function getCoinDetailsFromAPI(code, currency) {
         // set image size
         let fetchedImgURL = results[item].image;
         let swappedImgURL = fetchedImgURL.replace("large", "small");
+        console.log(swappedImgURL);
 
         let fetchedCoin = {
           price: results[item].current_price,
@@ -370,6 +371,7 @@ function createNewWatchListItem(coinName, coinQuantity) {
 }
 
 function populateSelectTokenList() {
+  coinCodeInput.value = "";
   let arr = CoinCodes.coinCodes;
 
   coinSearchList.innerHTML = "";
@@ -379,7 +381,7 @@ function populateSelectTokenList() {
     li.innerHTML = `
     <button class="coinSearchButton">
       <div class="coinSearchItemContainer">
-        <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+        <img class="coinSearchItemIcon" src="${arr[index].icon}" alt="" />
         <div class="coinSearchItemTextContainer">
           <div class="coinSearchItemName">${arr[index].symbol}</div>
           <div class="coinSearchItemCode">${arr[index].name}</div>
@@ -389,11 +391,11 @@ function populateSelectTokenList() {
     `;
     li.classList.add("coinSearchItem");
     li.addEventListener("click", () => {
-      coinCodeInput.value = "";
+     
       coinCodeBtn.innerHTML = 
       `<div id="button-display">
         <div class="button-display-item">
-          <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+          <img class="coinSearchItemIcon" src="${arr[index].icon}" alt="" />
         </div>
         <div class="button-display-item">
           ${arr[index].symbol}
@@ -419,7 +421,6 @@ function filterData(searchInput) {
     const searchStr = searchInput.toLowerCase();
 
     const matches = value.name.toLowerCase().includes(searchStr) || value.symbol.toLowerCase().includes(searchStr) ;
-    console.log(typeof(matches));
 
     return matches;
   });
@@ -431,7 +432,7 @@ function filterData(searchInput) {
     li.innerHTML = `
     <button class="coinSearchButton">
       <div class="coinSearchItemContainer">
-        <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+        <img class="coinSearchItemIcon" src="${filteredData[index].icon}" alt="" />
         <div class="coinSearchItemTextContainer">
           <div class="coinSearchItemName">${filteredData[index].symbol}</div>
           <div class="coinSearchItemCode">${filteredData[index].name}</div>
@@ -445,7 +446,7 @@ function filterData(searchInput) {
       coinCodeBtn.innerHTML =  `
       <div id="button-display">
       <div class="button-display-item">
-        <img class="coinSearchItemIcon" src="/icons/btc-logo.png" alt="" />
+        <img class="coinSearchItemIcon" src="${filteredData[index].icon}" alt="" />
       </div>
       <div class="button-display-item">
         ${filteredData[index].symbol}
