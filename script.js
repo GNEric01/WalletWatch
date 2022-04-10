@@ -427,7 +427,8 @@ function filterData(searchInput) {
   const filteredData = arr.filter((value) => {
     const searchStr = searchInput.toLowerCase();
 
-    const matches = value.name.toLowerCase().includes(searchStr);
+    const matches = value.name.toLowerCase().includes(searchStr) || value.symbol.toLowerCase().includes(searchStr) ;
+    console.log(typeof(matches));
 
     return matches;
   });
