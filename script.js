@@ -1,5 +1,4 @@
 // TO DO -- implement currency
-// TO DO -- manage duplicate items
 // TO DO -- optimize/remove xs code
 
 import * as LocalStorageManager from "/LocalStorageManager.js";
@@ -26,8 +25,6 @@ let netWorth = document.querySelector("#networth-text");
 // coin code dropdown options list
 let inputOptions = document.getElementById("coins");
 // coin dropdown
-let coinDropdown = document.querySelector(".coin-dropdown-list");
-let coinDropdownUL = document.querySelector("#coin-dropdown-ul");
 
 let codeInputErrorLabel = document.querySelector(
   "#coin-code-input-container-label"
@@ -48,18 +45,12 @@ let coinCodeBtn = document.querySelector("#coin-code-button");
 
 let coinSearchList = document.querySelector("#coinSearchList");
 
-// coinItemList.addEventListener("touchstart", startTouch, false);
-//  coinItemList.addEventListener("touchmove", moveTouch, false);
-
 coinItemList.addEventListener("touchstart", dragStart, false);
 coinItemList.addEventListener("touchend", dragEnd, false);
 coinItemList.addEventListener("touchmove", drag, false);
 
 // event listener for filter of coin code/name input
 coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
-
-// // event listener for input clicked to open dropdown
-// coinCodeInput.addEventListener("input", (e) => filterData(e.target.value));
 
 // event listener for holdings input clicked to close dropdown
 coinHoldingsInput.addEventListener("click", (e) => {
@@ -88,7 +79,7 @@ function closeSearchModal() {
 // When the user clicks open add coin modal btn
 openModalBtn.onclick = function () {
   modal.style.display = "flex";
-  testHoldingsInput.focus();
+  // testHoldingsInput.focus();
   coinCodeBtn.innerHTML = 
   `<div id="button-display">
     
@@ -495,86 +486,14 @@ function clearCoinItems() {
   coinItemList.innerHTML = "";
 }
 
-// swipe data
 
-// var initialX = null;
-// var initialY = null;
 
-// function startTouch(e) {
-//   // initialX = e.touches[0].clientX;
-//   // initialY = e.touches[0].clientY;
-//   // console.log(touched - e.CoinCodes);
 
-//   let swipedLiData = e.target.closest('.coin-item');
-//   DragHelper.applyDrag(swipedLiData);
-// };
-
-// function moveTouch(e) {
-// if (initialX === null) {
-//   return;
-// }
-
-// if (initialY === null) {
-//   return;
-// }
-
-// var currentX = e.touches[0].clientX;
-// var currentY = e.touches[0].clientY;
-
-// var diffX = initialX - currentX;
-// var diffY = initialY - currentY;
-
-// if (Math.abs(diffX) > Math.abs(diffY)) {
-//   // sliding horizontally
-//   if (diffX > 0) {
-//     // swiped left
-//     console.log("swiped left");
-//     //
-//     let swipedLiData = e.target.closest('.coin-item');
-//     let itemId = swipedLiData.getAttribute('data-id');
-//     console.log(parseInt(itemId));
-
-//     setTimeout(() => {
-//       LocalStorageManager.removeItemFromLocalStorage("watchList", parseInt(itemId));
-//       createWatchListItemsFromLocalStorage();
-//     },200);
-
-//     // LocalStorageManager.removeItemFromLocalStorage("watchList", parseInt(itemId));
-//     // createWatchListItemsFromLocalStorage();
-//     // return;
-
-//   } else {
-//     // swiped right
-//     console.log("swiped right");
-//   }
-// } else {
-//   // sliding vertically
-//   if (diffY > 0) {
-//     // swiped up
-//     console.log("swiped up");
-//   } else {
-//     // swiped down
-//     console.log("swiped down");
-//   }
-// }
-
-// initialX = null;
-// initialY = null;
-
-// e.preventDefault();
-//};
-
-var swipeItems = document.querySelector(".swipe-item");
 
 var activeItem = null;
 var initialXPos = 0;
 var active = false;
 export var del = false;
-var swiper;
-
-// swipeItems.addEventListener("mousedown", dragStart, false);
-// swipeItems.addEventListener("mouseup", dragEnd, false);
-// swipeItems.addEventListener("mousemove", drag, false);
 
 function dragStart(e) {
   active = true;
