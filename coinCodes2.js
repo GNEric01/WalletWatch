@@ -15,7 +15,7 @@ export let coinCodes = [
     {"id":"near","symbol":"NEAR","name":"NEAR-Protocol","icon":"/icons/near.png"},
     {"id":"tron","symbol":"TRX","name":"Tron","icon":"/icons/tron.png"},
     {"id":"bitcoincash","symbol":"BCH","name":"Bitcoin-Cash","icon":"/icons/1inch-token.png"},
-    {"id":"fantom","symbol":"FTM","name":"Fantom","icon":"//icons/fantom.png"},
+    {"id":"fantom","symbol":"FTM","name":"Fantom","icon":"/icons/fantom.png"},
     {"id":"stellar","symbol":"XLM","name":"Stellar","icon":"/icons/bitcoin.png"},
     {"id":"harmony","symbol":"ONE","name":"Harmony","icon":"/icons/bitcoin.png"},
     {"id":"defi-kingdoms","symbol":"JEWEL","name":"DeFi Kingdoms","icon":"/icons/jewel.png"},

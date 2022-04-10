@@ -122,7 +122,7 @@ document.onload = createWatchListItemsFromLocalStorage();
 
 function createWatchListItemsFromLocalStorage() {
   clearCoinItems();
-  inputOptions.innerHTML = "";
+  // inputOptions.innerHTML = "";
   resetNetworth();
   // get local storage items
   let watchList = LocalStorageManager.getFromLocalStorage("watchList");
