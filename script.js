@@ -230,7 +230,7 @@ function writeToTable() {
 function setUpCoinItemDelete() {
   // get all coin list items
   const coinItems = document.querySelectorAll(".coin-item");
-  // disable right click for each list iten
+  // disable right click default menu for each list item
   coinItems.forEach((element) => {
     element.addEventListener("contextmenu", (e) => {
       e.preventDefault();
@@ -316,10 +316,10 @@ function displayNewCoinItem(formattedCoin, id) {
       <!-- holdings total holdings -->
       <div class="holdings-container">
         <p class="holdings-total">${formattedCoin.coinCurrentValue}</p>
-        <p class="holdings">${formattedCoin.coinHoldings} ${
-    formattedCoin.coinCode
-  }</p>
+        <p class="holdings">${formattedCoin.coinHoldings} ${formattedCoin.coinCode}</p>
       </div>
+      <!-- delete btn -->
+      <button class="delete-btn btn-round"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <!-- <li/> -->
   `;

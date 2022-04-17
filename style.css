@@ -46,12 +46,13 @@ body {
 
 .container {
   background-color: var(--card-container-bg);
+   
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 600px;
   width: 100%;
-  /* border-radius: 20px; */
+  border-radius: 20px;
   padding: 20px 0px 5px 0px;
   margin: 5px;
   margin-top: 60px;
@@ -64,11 +65,12 @@ body {
   margin: 5px;
 }
 
-.coin-container {
+/* .coin-container {
+   
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+} */
 
 h1 {
   font-size: 3.5rem;
@@ -106,7 +108,6 @@ h1 {
 }
 
 #open-modal-btn {
-  /* color: rgb(31, 197, 44); */
   margin-right: 20px;
   margin-top: 15px;
   margin-left: -60px;
@@ -120,8 +121,8 @@ h1 {
   justify-content: space-between;
   height: 70px;
   padding: 10px;
-  margin: 2px 0px;
-  /* border-radius: 15px; */
+  margin: 5px 10px;
+  border-radius: 15px;
   transition: none;
 }
 
@@ -218,6 +219,8 @@ img .white-bg {
   font-weight: 600;
   color: var(--text-secondary-dark);
 }
+
+
 
 /* The Modal (background) */
 #addCoinModal {
@@ -369,19 +372,19 @@ input {
   margin-left: -2px;
 }
 
-.coin-dropdown-list::-webkit-scrollbar {
-  width: 5px; /* width of the entire scrollbar */
+/* .coin-dropdown-list::-webkit-scrollbar {
+  width: 5px;  
 }
 
 .coin-dropdown-list::-webkit-scrollbar-track {
-  background: #ececec; /* color of the tracking area */
+  background: #ececec;  
 }
 
 .coin-dropdown-list::-webkit-scrollbar-thumb {
-  background-color: rgb(148, 147, 147); /* color of the scroll thumb */
+  background-color: rgb(148, 147, 147);  
   height: 20px;
 
-  /* border: 3px solid orange;  creates padding around scroll thumb */
+  
 }
 
 .coin-dropdown-list li {
@@ -390,38 +393,38 @@ input {
 
 .coin-dropdown-list li:hover {
   background-color: #ececec;
-}
+} */
 
-.coin-holdings-input-container {
+/* .coin-holdings-input-container {
   display: flex;
   flex-direction: column;
   width: 250px;
-}
+} */
 
-#coin-holdings-input {
+/* #coin-holdings-input {
   background-color: black;
   color: var(--text-main-dark);
   border-radius: 15px;
   padding-left: 15px;
   border: none;
-}
+} */
 
-#coin-holdings-input-container-label {
+/* #coin-holdings-input-container-label {
   color: #d4d4d4;
   font-size: 0.8rem;
   font-weight: 500;
   margin-top: 5px;
-}
+} */
 
-input[type="number"]::-webkit-inner-spin-button,
+/* input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
-#coin-holdings-input:focus {
+/* #coin-holdings-input:focus {
   outline: none;
-}
+} */
 
 #addCoinBtn {
   display: flex;
@@ -443,7 +446,7 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: rgb(250, 209, 244);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   input {
     width: 100%;
   }
@@ -471,7 +474,7 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 100%;
   } */
 
-  .coin-dropdown-list {
+  /* .coin-dropdown-list {
     position: absolute;
     top: 45px;
     width: 95%;
@@ -483,9 +486,24 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 0.8rem;
     font-weight: 600;
     margin-left: -2px;
+  } */
+  .container {
+    border-radius: 0px;
   }
 
-  
+  .coin-item {
+     
+    margin: 2px 0px;
+    border-radius: 0px;
+     
+  }
+  #open-modal-btn {
+  margin-right: 10px;
+  }
+
+  .delete-btn {
+    display: none;
+  }
 }
 
 .swiped {
@@ -644,5 +662,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .button-display-item {
+  padding: 5px;
+}
+
+.delete-btn {
+  color: rgb(253, 133, 133);
+  font-size: 1.2rem;
+  font-weight: lighter;
+  margin-top: 8px;
+  margin-left: 10px;
   padding: 5px;
 }
