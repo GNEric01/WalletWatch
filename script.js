@@ -45,6 +45,8 @@ let coinCodeBtn = document.querySelector("#coin-code-button");
 
 let coinSearchList = document.querySelector("#coinSearchList");
 
+let welcomeMsg = document.querySelector('#welcome-msg');
+
 coinItemList.addEventListener("touchstart", dragStart, false);
 coinItemList.addEventListener("touchend", dragEnd, false);
 coinItemList.addEventListener("touchmove", drag, false);
@@ -132,12 +134,19 @@ function createWatchListItemsFromLocalStorage() {
   // let currentSelectedCurrency = getCurrentCurrency();
 
   // if watchlist is empty ensure networth total is $0
-  if (watchList == null) {
+  if (watchList.length == 0) {
     var netWorthNumber = 0;
     netWorth.textContent = "$0.00";
+    welcomeMsg.style.display = "flex";
+    // hide networth total
+    // show welcome message
+    return;
   }
+
   // create table item for each item in local storage
   if (watchList != null) {
+    // hide welcome msg
+    welcomeMsg.style.display = "none";
     // zero local storage array
     localStorageCoinData = [];
     // save local storage object in local array
